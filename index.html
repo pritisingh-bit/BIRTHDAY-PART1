@@ -73,8 +73,56 @@
       <div class="hint">✨ tap anywhere to blow them out</div>
     </section>
 
+<!-- Slide 6 : Letters -->
+<section class="slide" data-index="4">
+
+  <div class="eyebrow">💌 Just For You 💌</div>
+  
+    <h1>Open My Letters</h1>
+    
+      <p class="sub">
+          Every letter hides something I wanted to tell you...
+              Tap any one ❤️
+                </p>
+                
+                  <div class="letters-grid">
+                  
+                      <div class="letter-card" data-letter="1">
+                            💌
+                                  <span>When You're Happy</span>
+                                      </div>
+                                      
+                                          <div class="letter-card" data-letter="2">
+                                                🌸
+                                                      <span>When You're Sad</span>
+                                                          </div>
+                                                          
+                                                              <div class="letter-card" data-letter="3">
+                                                                    🌙
+                                                                          <span>When You Miss Me</span>
+                                                                              </div>
+                                                                              
+                                                                                  <div class="letter-card" data-letter="4">
+                                                                                        ✨
+                                                                                              <span>Need Motivation</span>
+                                                                                                  </div>
+                                                                                                  
+                                                                                                      <div class="letter-card" data-letter="5">
+                                                                                                            🎀
+                                                                                                                  <span>Overthinking?</span>
+                                                                                                                      </div>
+                                                                                                                      
+                                                                                                                          <div class="letter-card" data-letter="6">
+                                                                                                                                💖
+                                                                                                                                      <span>Birthday Night</span>
+                                                                                                                                          </div>
+                                                                                                                                          
+                                                                                                                                            </div>
+                                                                                                                                            
+                                                                                                                                            </section>-->
+
     <!-- Slide 5 -->
-    <section class="slide" data-index="4">
+    <section class="slide" data-index="5">
       <div class="eyebrow">🎉 happy happy birthday 🎉</div>
       <h1>Happy <em>Birthday!</em></h1>
       <p class="quote">"May this year bring you everything your heart desires — love, laughter, adventures &amp; all your dreams come true 🌸"</p>
@@ -106,6 +154,142 @@
     const dot = document.createElement('i');
     progressEl.appendChild(dot);
   }
+
+/* ==========================================================
+   LETTERS
+   ========================================================== */
+
+   const popup = document.getElementById("letterPopup");
+   const title = document.getElementById("letterTitle");
+   const content = document.getElementById("letterContent");
+
+   const letters = {
+
+   1:{
+   title:"💌 When You're Happy",
+   body:`Seeing you happy is one of my favourite things.
+
+   Keep smiling.
+   Keep laughing.
+
+   You deserve every beautiful moment that comes your way.
+
+   Never stop being the amazing person you are. ❤️`
+   },
+
+   2:{
+   title:"🌸 When You're Sad",
+   body:`It's okay to have bad days.
+
+   Please remember—
+
+   Storms never stay forever.
+
+   You are stronger than you think, and brighter than you believe.
+
+   Take one deep breath...
+   Everything will be okay. 🌸`
+   },
+
+   3:{
+   title:"🌙 When You Miss Me",
+   body:`Distance never changes memories.
+
+   Even if we aren't talking all the time...
+
+   I'm always wishing the best for you.
+
+   Whenever you think of me—
+
+   Smile.
+
+   Because somewhere,
+   I'm probably smiling too. 🤍`
+   },
+
+   4:{
+   title:"✨ Need Motivation",
+   body:`You've already survived every difficult day life has given you.
+
+   That means...
+
+   You can survive this one too.
+
+   Believe in yourself.
+
+   Your future self is already proud of you. ✨`
+   },
+
+   5:{
+   title:"🎀 Stop Overthinking",
+   body:`You think too much sometimes.
+
+   Relax.
+
+   Not everything needs an answer today.
+
+   Drink some water.
+
+   Listen to your favourite song.
+
+   Everything will eventually fall into place. 🌷`
+   },
+
+   6:{
+   title:"🎂 Birthday Night",
+   body:`Happy Birthday ❤️
+
+   I hope this little website made you smile.
+
+   Thank you for existing.
+
+   The world genuinely became a more beautiful place because you're in it.
+
+   Have the happiest birthday ever.
+
+   🎂💖✨`
+   }
+
+   };
+
+   /* open */
+
+   document.querySelectorAll(".letter-card").forEach(card=>{
+
+   card.addEventListener("click",(e)=>{
+
+   e.stopPropagation();
+
+   const id=card.dataset.letter;
+
+   title.textContent=letters[id].title;
+
+   content.textContent=letters[id].body;
+
+   popup.classList.add("show");
+
+   });
+
+   });
+
+   /* close */
+
+   document.querySelector(".close-letter").addEventListener("click",()=>{
+
+   popup.classList.remove("show");
+
+   });
+
+   popup.addEventListener("click",(e)=>{
+
+   if(e.target===popup){
+
+   popup.classList.remove("show");
+
+   }
+
+   });
+
   function updateProgress(){
     [...progressEl.children].forEach((d,i)=>{
       d.classList.toggle('active', i===current);
@@ -126,13 +310,18 @@
   }
 
   function next(){
-    if(current===3 && !candlesBlown){
-      blowCandles();
-      return;
-    }
-    if(current < total-1){ goTo(current+1); }
-  }
 
+        if(current===3 && !candlesBlown){
+                blowCandles();
+                        return;
+                            }
+
+                                if(current<total-1){
+                                        goTo(current+1);
+                                            }
+
+                                            }
+  
   function resetCandles(){
     candlesBlown = false;
     document.querySelectorAll('[data-flame]').forEach(f=>f.classList.remove('out'));
@@ -235,6 +424,23 @@
 
   updateProgress();
 </script>
+
+<div class="letter-popup" id="letterPopup">
+
+      <div class="letter-paper">
+        
+            <div class="paper-decoration deco1">🌸</div>
+                <div class="paper-decoration deco2">✨</div>
+                    <div class="paper-decoration deco3">💖</div>
+                    
+                        <button class="close-letter">&times;</button>
+                        
+                            <h2 id="letterTitle"></h2>
+                            
+                                <p id="letterContent"></p>
+                                
+                                </div>>
+                                  </div>
 
 </body>
 </html>
